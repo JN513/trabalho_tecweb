@@ -6,8 +6,8 @@ class User extends BaseController
 {
     public function login()
     {
-        echo view('Templates/Header');
-        echo view('Pages/Login');
-        echo view('Templates/Footer');
+        echo view('templates/Header');
+        echo view('pages/Login');
+        echo view('templates/Footer');
     }
 }
