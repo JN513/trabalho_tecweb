@@ -1,4 +1,17 @@
 <div class="container py-5 align-middle">
+    <?php if (session()->getFlashdata('msg')) : ?>
+        <div class="alert alert-warning">
+            <?= session()->getFlashdata('msg') ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($validation)) : ?>
+        <div class="alert alert-danger">
+            <?= $validation->listErrors() ?>
+        </div>
+
+    <?php endif; ?>
+
     <div class="row justify-content-md-center">
         <div class="col-5">
 
@@ -14,10 +27,10 @@
                     <input type="text" name="titulo" placeholder="Titulo" value="<?= set_value('titulo') ?>" class="form-control">
                 </div>
                 <div class="form-group mb-3">
-                    <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição" value="<?= set_value('descricao') ?>" class="form-control"></textarea>
+                    <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição" class="form-control"><?= set_value('descricao') ?></textarea>
                 </div>
                 <div class="form-group mb-3">
-                    <textarea name="body" id="body" cols="30" rows="10" placeholder="Conteudo" value="<?= set_value('body') ?>" class="form-control"></textarea>
+                    <textarea name="body" id="body" cols="30" rows="10" placeholder="Conteudo" class="form-control"><?= set_value('body') ?></textarea>
                 </div>
                 <div class="form-group mb-3">
                     <input type="file" name="imagem" placeholder="Imagem" class="form-control">

@@ -47,8 +47,8 @@ $routes->get('cadastro', 'SignupController::register');
 $routes->get('/', 'Home::index');
 $routes->get('profile', 'ProfileController::index', ['filter' => 'authGuard']);
 $routes->get('create', 'ConteudoController::create', ['filter' => 'adminauthGuard']); //ConteudoController
-$routes->get('delete/(:num)', 'ConteudoController::delete/$1', ['filter' => 'adminauthGuard']);
-$routes->get('edit/(:num)', 'ConteudoController::edit/$1', ['filter' => 'adminauthGuard']);
+$routes->get('conteudo/delete/(:num)', 'ConteudoController::delete/$1', ['filter' => 'adminauthGuard']);
+$routes->get('conteudo/edit/(:num)', 'ConteudoController::edit/$1', ['filter' => 'adminauthGuard']);
 
 $routes->get('conteudo/(:num)', 'ConteudoController::show/$1');
 

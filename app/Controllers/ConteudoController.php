@@ -20,15 +20,18 @@ class ConteudoController extends BaseController
         helper(['form']);
         $rules = [
             'titulo'          => 'required|min_length[2]|max_length[100]',
-            'descricao'          => 'required|min_length[2]|max_length[200]',
+            'descricao'          => 'required|min_length[2]|max_length[350]',
             'body'         => 'required|min_length[4]',
         ];
 
         if ($this->validate($rules)) {
 
             $imagem = $this->request->getFile('imagem');
+            $imagem->setName = time() . '' . rand(1000, 9999) . '.' . $imagem->getClientExtension();
             $imagem->move('./imagens');
             $nomeImagem = $imagem->getName();
+
+            echo $nomeImagem;
 
             $currentUserId = session()->get('id');
 
@@ -95,7 +98,7 @@ class ConteudoController extends BaseController
         helper(['form']);
         $rules = [
             'titulo'          => 'required|min_length[2]|max_length[100]',
-            'descricao'          => 'required|min_length[2]|max_length[200]',
+            'descricao'          => 'required|min_length[2]|max_length[350]',
             'body'         => 'required|min_length[4]',
         ];
 
@@ -129,7 +132,7 @@ class ConteudoController extends BaseController
         }
     }
 
-    public function show($id)
+    public function show($id = NULL)
     {
         $conteudoModel = new ConteudoModel();
 

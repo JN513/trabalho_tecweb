@@ -1,4 +1,5 @@
 <div class="container py-5 align-middle">
+
     <div>
         <?php if (session()->getFlashdata('msg')) : ?>
             <div class="alert alert-warning">
@@ -19,7 +20,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="<?= base_url() ?>/imagens/<?= $conteudo[$i]['imagem'] ?>" class="img-fluid rounded-start" alt="...">
+                            <img src="<?= base_url() ?>/imagens/<?= $conteudo[$i]['imagem'] ?>" class="img-fluid rounded-start" alt="<?= $conteudo[$i]['titulo'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
