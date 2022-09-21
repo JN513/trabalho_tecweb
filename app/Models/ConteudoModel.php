@@ -7,7 +7,7 @@ class ConteudoModel extends Model{
 	protected $table = 'Conteudo';
 	protected $primaryKey = 'id';
 	//Campos editáveis
-	protected $allowedFields = ['titulo','descricao','body','created_at'];
+	protected $allowedFields = ['imagem','titulo','descricao','body','created_at','user_id','updated_at'];
 	/*Método Get para apresentar o conteúdo*/
 	public function getConteudo(){
 		return $this->findAll();
@@ -15,6 +15,13 @@ class ConteudoModel extends Model{
 	//mostra conteúdo específico
 	public function getConteudoItem($id){
 		return $this->asArray()->where(['id'=>$id])->first();
-	}					
+	}
+	//delete conteúdo específico
+	public function deleteConteudo($id){
+		return $this->delete($id);
+	}
+	// atualiza conteúdo específico
+	public function updateConteudo($id, $data){
+		return $this->update($id, $data);
+	}
 }
-?>

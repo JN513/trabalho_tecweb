@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS User(
 
 CREATE TABLE IF NOT EXISTS Conteudo (
     id INT AUTO_INCREMENT NOT NULL,
+    imagem VARCHAR(255),
     titulo VARCHAR(100),
     descricao TEXT,
     body TEXT,

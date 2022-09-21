@@ -36,10 +36,17 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-//$routes->match(['get','post'],'login',' User::login');
 
-$routes->get('login', 'User::login');
+$routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
+$routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
+$routes->match(['get', 'post'], 'ConteudoController/store', 'ConteudoController::store', ['filter' => 'adminauthGuard']);
+
+$routes->get('login', 'SigninController::login');
+$routes->get('logout', 'SigninController::logout', ['filter' => 'authGuard']);
+$routes->get('cadastro', 'SignupController::register');
 $routes->get('/', 'Home::index');
+$routes->get('profile', 'ProfileController::index', ['filter' => 'authGuard']);
+$routes->get('create', 'ConteudoController::create', ['filter' => 'adminauthGuard']); //ConteudoController
 
 /*
  * --------------------------------------------------------------------
