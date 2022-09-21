@@ -30,7 +30,7 @@
         <p><?= $conteudo['body'] ?></p>
         <div class="d-flex flex-row-reverse">
             <div class="d-flex flex-column">
-                <p><small><em>Escrito em: <?= $conteudo['created_at'] ?> por <?= $user['first_name'] ?> <a href="/profile/<?= $user["id"] ?>"> <?= $user['last_name'] ?></a></em></small></p>
+                <p><small><em>Escrito em: <?= $conteudo['created_at'] ?> por <a href="/profile/<?= $user["id"] ?>" style="text-decoration: none;"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a></em></small></p>
                 <p><small><em>Atualizado em: <?= $conteudo['updated_at'] ?></em></small></p>
             </div>
         </div>
