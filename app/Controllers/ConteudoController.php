@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ConteudoModel;
+use App\Models\UserModel;
 
 class ConteudoController extends BaseController
 {
@@ -137,6 +138,10 @@ class ConteudoController extends BaseController
         $conteudoModel = new ConteudoModel();
 
         $data['conteudo'] = $conteudoModel->find($id);
+
+        $user = new UserModel();
+
+        $data['user'] = $user->find($data['conteudo']['user_id']);
 
         echo view('templates/Header');
         echo view('pages/ShowContent', $data);

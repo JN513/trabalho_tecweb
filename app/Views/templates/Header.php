@@ -29,10 +29,11 @@
 				<div class="navbar-nav">
 					<a class="nav-item nav-link" href="/">Home</span></a>
 					<?php if (session()->get('isLoggedIn')) : ?>
-						<a class="nav-item nav-link" href="/profile">perfil</a>
+						<a class="nav-item nav-link" href="/profile/<?= session()->get('id')  ?>">perfil</a>
 						<a class="nav-item nav-link" href="/logout">Logout</a>
 						<?php if (session()->get('is_staff')) : ?>
 							<a class="nav-item nav-link" href="/create">Criar Conteudo</a>
+							<a class="nav-item nav-link" href="/users">Usuarios</a>
 						<?php endif; ?>
 					<?php else : ?>
 						<a class="nav-item nav-link" href="/login">Login</a>
