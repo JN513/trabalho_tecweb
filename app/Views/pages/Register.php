@@ -1,4 +1,4 @@
-<div class="container mt-5 py-5">
+<div class="container mt-5 py-5 align-middle">
     <div class="row justify-content-md-center">
         <div class="col-5">
             <h2>Register User</h2>

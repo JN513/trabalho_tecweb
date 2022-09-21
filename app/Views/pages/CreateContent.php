@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container py-5 align-middle">
     <div class="row justify-content-md-center">
         <div class="col-5">
 

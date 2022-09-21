@@ -1,4 +1,4 @@
-		<div class="container-fluid bg-dark">
+		<div class="container-fluid bg-dark align-bottom">
 			<footer>
 				<div class="text-center py-5">
 					<em class="text-light">Copyright &copy; 2022 by Julio Nunes Avelar</em>
