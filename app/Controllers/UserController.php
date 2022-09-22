@@ -42,4 +42,25 @@ class UserController extends BaseController
         $userModel->delete($id);
         return redirect()->to('/logout');
     }
+
+    public function edit($id = NULL)
+    {
+        $session = session();
+        $userModel = new UserModel();
+        $ids = $session->get('id');
+
+        if (!session()->get('is_staff') or !$id == $ids) {
+            $session->setFlashdata('error', 'Você não tem permissão para acessar essa página.');
+            return redirect()->to('/');
+        }
+
+        $data['user'] = $userModel->where('id', $id)->first();
+        echo view('templates/Header', ['title' => 'Editar Perfil']);
+        echo view('pages/EditProfile', $data);
+        echo view('templates/Footer');
+    }
+
+    public function update()
+    {
+    }
 }
