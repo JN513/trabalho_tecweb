@@ -68,6 +68,12 @@ class ConteudoController extends BaseController
             return redirect()->to('/');
         }
 
+        $oldimagename = $conteudoModel->find($id)['imagem'];
+
+        if (file_exists('./imagens/' . $oldimagename)) {
+            unlink('./imagens/' . $oldimagename);
+        }
+
         $conteudoModel->delete($id);
 
         $session->setFlashdata('msg', 'Conteúdo excluído com sucesso.');
@@ -108,10 +114,20 @@ class ConteudoController extends BaseController
             $conteudoModel = new ConteudoModel();
 
             $imagem = $this->request->getFile('imagem');
-            $imagem->move('./imagens');
-            $nomeImagem = $imagem->getName();
-
             $currentUserId = session()->get('id');
+            $contentId = $this->request->getVar('id');
+
+            if (!empty($imagem->getName())) {
+                $imagem->move('./imagens');
+                $nomeImagem = $imagem->getName();
+                $oldimagename = $conteudoModel->find($contentId)['imagem'];
+
+                if (file_exists('./imagens/' . $oldimagename)) {
+                    unlink('./imagens/' . $oldimagename);
+                }
+            } else {
+                $nomeImagem = $conteudoModel->find($contentId)['imagem'];
+            }
 
             $data = [
                 'id' => $this->request->getVar('id'),
@@ -123,6 +139,9 @@ class ConteudoController extends BaseController
             ];
 
             $conteudoModel->save($data);
+
+            $session = session();
+            $session->setFlashdata('msg', 'Conteúdo atualizado com sucesso.');
 
             return redirect()->to('/');
         } else {

@@ -34,4 +34,12 @@ class UserController extends BaseController
         echo view('pages/Users', $data);
         echo view('templates/Footer');
     }
+
+    public function delete()
+    {
+        $userModel = new UserModel();
+        $id = session()->get('id');
+        $userModel->delete($id);
+        return redirect()->to('/logout');
+    }
 }

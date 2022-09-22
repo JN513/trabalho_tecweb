@@ -46,8 +46,9 @@ $routes->get('login', 'SigninController::login', ['filter' => 'noauthGuard']);
 $routes->get('logout', 'SigninController::logout', ['filter' => 'authGuard']);
 $routes->get('cadastro', 'SignupController::register', ['filter' => 'noauthGuard']);
 $routes->get('/', 'Home::index');
-$routes->get('profile/(:num)', 'UserController::index/$1', ['filter' => 'authGuard']);
+$routes->get('profile/(:num)', 'UserController::index/$1');
 $routes->get('users', 'UserController::list', ['filter' => 'adminauthGuard']);
+$routes->get('/user/delete', 'UserController::delete', ['filter' => 'authGuard']);
 $routes->get('create', 'ConteudoController::create', ['filter' => 'adminauthGuard']); //ConteudoController
 $routes->get('conteudo/delete/(:num)', 'ConteudoController::delete/$1', ['filter' => 'adminauthGuard']);
 $routes->get('conteudo/edit/(:num)', 'ConteudoController::edit/$1', ['filter' => 'adminauthGuard']);

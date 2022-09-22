@@ -37,6 +37,10 @@ class SignupController extends BaseController
                 'is_staff' => FALSE
             ];
             $userModel->save($data);
+
+            $session = session();
+            $session->setFlashdata('msg', 'Cadastro realizado com sucesso!');
+
             return redirect()->to('/login');
         } else {
             $data['validation'] = $this->validator;
