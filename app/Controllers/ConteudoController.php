@@ -112,10 +112,17 @@ class ConteudoController extends BaseController
         if ($this->validate($rules)) {
 
             $conteudoModel = new ConteudoModel();
+            $session = session();
 
             $imagem = $this->request->getFile('imagem');
             $currentUserId = session()->get('id');
             $contentId = $this->request->getVar('id');
+
+            if ($conteudoModel->find($contentId)['user_id'] != session()->get('id')) {
+                $session->setFlashdata('msg', 'Usuário não autorizado.');
+
+                return redirect()->to('/');
+            }
 
             if (!empty($imagem->getName())) {
                 $imagem->move('./imagens');
@@ -140,7 +147,6 @@ class ConteudoController extends BaseController
 
             $conteudoModel->save($data);
 
-            $session = session();
             $session->setFlashdata('msg', 'Conteúdo atualizado com sucesso.');
 
             return redirect()->to('/');

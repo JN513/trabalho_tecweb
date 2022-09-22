@@ -62,5 +62,28 @@ class UserController extends BaseController
 
     public function update()
     {
+        $userModel = new UserModel();
+        $session = session();
+        $ids = $session->get('id');
+        $id = $this->request->getVar('id');
+
+        if (!session()->get('is_staff') or !$id == $ids) {
+            $session->setFlashdata('error', 'Você não tem permissão para acessar essa página.');
+            return redirect()->to('/');
+        }
+
+        $data = [
+            'id' => $id,
+            'first_name' => $this->request->getVar('first_name'),
+            'last_name' => $this->request->getVar('last_name'),
+            'email' => $this->request->getVar('email'),
+            'password' => $userModel->where('id', $id)->first()['password'],
+        ];
+
+        $userModel->save($data);
+
+        $session->setFlashdata('success', 'Perfil atualizado com sucesso.');
+
+        return redirect()->to("/profile/{$data['id']}");
     }
 }
