@@ -49,7 +49,7 @@ class UserController extends BaseController
         $userModel = new UserModel();
         $ids = $session->get('id');
 
-        if (!session()->get('is_staff') or !$id == $ids) {
+        if ($id != $ids and !session()->get('is_staff')) {
             $session->setFlashdata('error', 'Você não tem permissão para acessar essa página.');
             return redirect()->to('/');
         }
@@ -67,7 +67,7 @@ class UserController extends BaseController
         $ids = $session->get('id');
         $id = $this->request->getVar('id');
 
-        if (!session()->get('is_staff') or !$id == $ids) {
+        if ($id != $ids and !session()->get('is_staff')) {
             $session->setFlashdata('error', 'Você não tem permissão para acessar essa página.');
             return redirect()->to('/');
         }

@@ -30,12 +30,13 @@ class SignupController extends BaseController
         if ($this->validate($rules)) {
             $userModel = new UserModel();
             $data = [
-                'first_name'     => $this->request->getVar('fist_name'),
+                'first_name'     => $this->request->getVar('first_name'),
                 'last_name'     => $this->request->getVar('last_name'),
                 'email'    => $this->request->getVar('email'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'is_staff' => FALSE
             ];
+
             $userModel->save($data);
 
             $session = session();
