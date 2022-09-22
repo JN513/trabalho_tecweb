@@ -11,7 +11,7 @@ class ConteudoController extends BaseController
     {
         helper(['form']);
         $data = [];
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Criar Conteúdo']);
         echo view('pages/CreateContent', $data);
         echo view('templates/Footer');
     }
@@ -50,7 +50,7 @@ class ConteudoController extends BaseController
             return redirect()->to('/');
         } else {
             $data['validation'] = $this->validator;
-            echo view('templates/Header');
+            echo view('templates/Header', ['title' => 'Criar Conteúdo']);
             echo view('pages/CreateContent', $data);
             echo view('templates/Footer');
         }
@@ -89,7 +89,7 @@ class ConteudoController extends BaseController
 
         $data['conteudo'] = $conteudoModel->find($id);
 
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Editar Conteúdo']);
         echo view('pages/EditContent', $data);
         echo view('templates/Footer');
     }
@@ -127,7 +127,7 @@ class ConteudoController extends BaseController
             return redirect()->to('/');
         } else {
             $data['validation'] = $this->validator;
-            echo view('templates/Header');
+            echo view('templates/Header', ['title' => 'Editar Conteúdo']);
             echo view('pages/EditContent', $data);
             echo view('templates/Footer');
         }
@@ -143,7 +143,7 @@ class ConteudoController extends BaseController
 
         $data['user'] = $user->find($data['conteudo']['user_id']);
 
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Conteúdo']);
         echo view('pages/ShowContent', $data);
         echo view('templates/Footer');
     }

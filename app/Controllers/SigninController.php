@@ -10,7 +10,7 @@ class SigninController extends BaseController
     {
         helper(['form']);
         $data = [];
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Login']);
         echo view('pages/Login', $data);
         echo view('templates/Footer');
     }
@@ -36,7 +36,7 @@ class SigninController extends BaseController
                     'is_staff' => $data['is_staff'],
                 ];
                 $session->set($ses_data);
-                return redirect()->to('/profile');
+                return redirect()->to("/profile/{$data['id']}");
             } else {
                 $session->setFlashdata('msg', 'Senha incorreta.');
                 return redirect()->to('/login');
@@ -51,6 +51,6 @@ class SigninController extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 }

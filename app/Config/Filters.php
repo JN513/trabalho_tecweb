@@ -18,12 +18,13 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-		'csrf'     => \CodeIgniter\Filters\CSRF::class,
-		'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
-		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
-		'authGuard' => \App\Filters\AuthGuard::class,
+        'csrf'     => \CodeIgniter\Filters\CSRF::class,
+        'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
+        'honeypot' => \CodeIgniter\Filters\Honeypot::class,
+        'authGuard' => \App\Filters\AuthGuard::class,
         'adminauthGuard' => \App\Filters\AdminAuthGuard::class,
-	];
+        'noauthGuard' => \App\Filters\NoAuthGuard::class,
+    ];
 
     /**
      * List of filter aliases that are always

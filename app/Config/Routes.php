@@ -37,13 +37,14 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
-$routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
+$routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store', ['filter' => 'noauthGuard']);
+$routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth', ['filter' => 'noauthGuard']);
 $routes->match(['get', 'post'], 'ConteudoController/store', 'ConteudoController::store', ['filter' => 'adminauthGuard']);
+$routes->match(['get', 'post'], 'ConteudoController/update', 'ConteudoController::update', ['filter' => 'adminauthGuard']);
 
-$routes->get('login', 'SigninController::login');
+$routes->get('login', 'SigninController::login', ['filter' => 'noauthGuard']);
 $routes->get('logout', 'SigninController::logout', ['filter' => 'authGuard']);
-$routes->get('cadastro', 'SignupController::register');
+$routes->get('cadastro', 'SignupController::register', ['filter' => 'noauthGuard']);
 $routes->get('/', 'Home::index');
 $routes->get('profile/(:num)', 'UserController::index/$1', ['filter' => 'authGuard']);
 $routes->get('users', 'UserController::list', ['filter' => 'adminauthGuard']);

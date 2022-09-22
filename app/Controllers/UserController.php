@@ -21,7 +21,7 @@ class UserController extends BaseController
 
         $data['user'] = $userModel->where('id', $id)->first();
         $data['conteudo'] = $conteudoModel->findAll();
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Perfil']);
         echo view('pages/Profile', $data);
         echo view('templates/Footer');
     }
@@ -30,7 +30,7 @@ class UserController extends BaseController
     {
         $userModel = new UserModel();
         $data['users'] = $userModel->findAll();
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Usuários']);
         echo view('pages/Users', $data);
         echo view('templates/Footer');
     }

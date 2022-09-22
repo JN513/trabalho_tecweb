@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\UserModel;
 
 class SignupController extends BaseController
@@ -10,12 +11,13 @@ class SignupController extends BaseController
     {
         helper(['form']);
         $data = [];
-        echo view('templates/Header');
+        echo view('templates/Header', ['title' => 'Cadastro']);
         echo view('pages/Register', $data);
         echo view('templates/Footer');
     }
 
-    public function store(){
+    public function store()
+    {
         helper(['form']);
         $rules = [
             'first_name'          => 'required|min_length[2]|max_length[100]',
@@ -24,8 +26,8 @@ class SignupController extends BaseController
             'password'      => 'required|min_length[4]|max_length[50]',
             'confirmpassword'  => 'matches[password]'
         ];
-          
-        if($this->validate($rules)){
+
+        if ($this->validate($rules)) {
             $userModel = new UserModel();
             $data = [
                 'first_name'     => $this->request->getVar('fist_name'),
@@ -36,9 +38,9 @@ class SignupController extends BaseController
             ];
             $userModel->save($data);
             return redirect()->to('/login');
-        }else{
+        } else {
             $data['validation'] = $this->validator;
-            echo view('templates/Header');
+            echo view('templates/Header', ['title' => 'Cadastro']);
             echo view('pages/Register', $data);
             echo view('templates/Footer');
         }
