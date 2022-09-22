@@ -86,4 +86,15 @@ class UserController extends BaseController
 
         return redirect()->to("/profile/{$data['id']}");
     }
+
+    public function alterpassword()
+    {
+        echo view('templates/Header', ['title' => 'Alterar Senha']);
+        echo view('pages/ChangePassword');
+        echo view('templates/Footer');
+    }
+
+    public function changepassword()
+    {
+    }
 }

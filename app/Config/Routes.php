@@ -42,6 +42,7 @@ $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController:
 $routes->match(['get', 'post'], 'ConteudoController/store', 'ConteudoController::store', ['filter' => 'adminauthGuard']);
 $routes->match(['get', 'post'], 'ConteudoController/update', 'ConteudoController::update', ['filter' => 'adminauthGuard']);
 $routes->match(['get', 'post'], 'UserController/update', 'UserController::update', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'UserController/changepassword', 'UserController::changepassword', ['filter' => 'authGuard']);
 
 $routes->get('login', 'SigninController::login', ['filter' => 'noauthGuard']);
 $routes->get('logout', 'SigninController::logout', ['filter' => 'authGuard']);
@@ -51,6 +52,7 @@ $routes->get('profile/(:num)', 'UserController::index/$1');
 $routes->get('users', 'UserController::list', ['filter' => 'adminauthGuard']);
 $routes->get('user/edit/(:num)', 'UserController::edit/$1', ['filter' => 'authGuard']);
 $routes->get('user/delete', 'UserController::delete', ['filter' => 'authGuard']);
+$routes->get('user/alterpassword', 'UserController::alterpassword', ['filter' => 'authGuard']);
 $routes->get('create', 'ConteudoController::create', ['filter' => 'adminauthGuard']); //ConteudoController
 $routes->get('conteudo/delete/(:num)', 'ConteudoController::delete/$1', ['filter' => 'adminauthGuard']);
 $routes->get('conteudo/edit/(:num)', 'ConteudoController::edit/$1', ['filter' => 'adminauthGuard']);
