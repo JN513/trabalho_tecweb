@@ -29,7 +29,7 @@
                 <tbody>
                     <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><?= $user['first_name'] ?></td>
+                            <td><a href="/profile/<?= $user['id'] ?>" style="text-decoration:none;"><?= $user['first_name'] ?></a></td>
                             <td><?= $user['last_name'] ?></td>
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['created_at'] ?></td>
