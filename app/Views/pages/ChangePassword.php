@@ -14,7 +14,7 @@
                 </div>
 
             <?php endif; ?>
-            <form action="<?php echo base_url(); ?>/user/changepassword" method="post">
+            <form action="<?php echo base_url(); ?>/UserController/changepassword" method="post">
                 <div class="form-group mb-3">
                     <input type="password" name="oldpassword" placeholder="Old Password" class="form-control">
                 </div>
@@ -25,7 +25,7 @@
                     <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control">
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-dark">Cadastrar</button>
+                    <button type="submit" class="btn btn-dark">Alterar Senha</button>
                 </div>
             </form>
         </div>

@@ -111,5 +111,40 @@ class UserController extends BaseController
 
     public function changepassword()
     {
+        helper(['form']);
+        $rules = [
+            'password'      => 'required|min_length[4]|max_length[50]',
+            'confirmpassword'  => 'matches[password]'
+        ];
+
+        if ($this->validate($rules)) {
+            $userModel = new UserModel();
+            $session = session();
+            $id = $session->get('id');
+
+            $u_password = $userModel->where('id', $id)->first()['password'];
+            $old_password = $this->request->getVar('oldpassword');
+
+            if (!password_verify($old_password, $u_password)) {
+                $session->setFlashdata('error', 'Senha atual incorreta.');
+
+                return redirect()->to('/user/alterpassword');
+            }
+
+            $data = [
+                'id' => $id,
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            ];
+
+            $userModel->save($data);
+
+            $session->setFlashdata('success', 'Senha alterada com sucesso.');
+
+            return redirect()->to("/profile/{$data['id']}");
+        } else {
+            $session = session();
+            $session->setFlashdata('error', 'As senhas não conferem.');
+            return redirect()->to('user/alterpassword');
+        }
     }
 }
