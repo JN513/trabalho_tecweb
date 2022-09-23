@@ -46,6 +46,12 @@ class UserController extends BaseController
             return redirect()->to('/');
         }
 
+        $user = $userModel->where('id', $id)->first();
+
+        if (!empty($user['avatar'])) {
+            unlink('./imagens/' . $user['avatar']);
+        }
+
         $userModel->delete($id);
 
         if ($session->get('is_staff')) {
