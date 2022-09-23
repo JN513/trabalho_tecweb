@@ -35,12 +35,24 @@ class UserController extends BaseController
         echo view('templates/Footer');
     }
 
-    public function delete()
+    public function delete($id = NULL)
     {
+        $session = session();
         $userModel = new UserModel();
-        $id = session()->get('id');
+        $ids = $session->get('id');
+
+        if ($id != $ids and !$session->get('is_staff')) {
+            $session->setFlashdata('error', 'Você não tem permissão para acessar essa página.');
+            return redirect()->to('/');
+        }
+
         $userModel->delete($id);
-        return redirect()->to('/logout');
+
+        if ($session->get('is_staff')) {
+            return redirect()->to('/users');
+        } else {
+            return redirect()->to('/logout');
+        }
     }
 
     public function edit($id = NULL)
