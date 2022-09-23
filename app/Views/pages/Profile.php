@@ -15,6 +15,7 @@
     <div class="card">
         <div class="card-body">
             <h2>Perfil</h2>
+            <img src="<?= base_url() ?>/imagens/<?= $user['avatar'] ?>" alt="<?= $user['first_name'] ?>" class="img-fluid">
             <h3><?= $user['first_name'] ?></h3>
             <h3><?= $user['last_name'] ?></h3>
             <p><?= $user['email'] ?></p>

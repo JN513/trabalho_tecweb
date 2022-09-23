@@ -20,7 +20,7 @@
                     <?= $validation->listErrors() ?>
                 </div>
             <?php endif; ?>
-            <form action="<?php echo base_url(); ?>/UserController/update" method="post">
+            <form action="<?php echo base_url(); ?>/UserController/update" method="post" enctype="multipart/form-data">
                 <input type="number" value="<?= $user['id'] ?>" name="id" id="id" hidden readonly>
                 <div class="form-group mb-3">
                     <input type="text" name="first_name" placeholder="First Name" value="<?= $user['first_name'] ?>" class="form-control">
@@ -30,6 +30,9 @@
                 </div>
                 <div class="form-group mb-3">
                     <input type="email" name="email" placeholder="Email" value="<?= $user['email'] ?>" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="file" name="avatar" id="avatar" placeholder="Avatar" class="form-control">
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-dark">Atualizar</button>

@@ -14,7 +14,7 @@
                 </div>
 
             <?php endif; ?>
-            <form action="<?php echo base_url(); ?>/SignupController/store" method="post">
+            <form action="<?php echo base_url(); ?>/SignupController/store" method="post" enctype="multipart/form-data">
                 <div class="form-group mb-3">
                     <input type="text" name="first_name" placeholder="First Name" value="<?= set_value('first_name') ?>" class="form-control">
                 </div>
@@ -29,6 +29,9 @@
                 </div>
                 <div class="form-group mb-3">
                     <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="file" name="avatar" id="avatar" placeholder="Avatar" class="form-control">
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-dark">Cadastrar</button>

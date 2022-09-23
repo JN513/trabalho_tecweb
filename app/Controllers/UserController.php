@@ -72,7 +72,22 @@ class UserController extends BaseController
             return redirect()->to('/');
         }
 
+        $imagem = $this->request->getFile('avatar');
+
+        if (!empty($imagem->getName())) {
+            $imagem->move('./imagens');
+            $nomeImagem = $imagem->getName();
+            $oldimagename = $userModel->find($id)['avatar'];
+
+            if (file_exists('./imagens/' . $oldimagename) and !empty($oldimagename)) {
+                unlink('./imagens/' . $oldimagename);
+            }
+        } else {
+            $nomeImagem = $userModel->find($id)['avatar'];
+        }
+
         $data = [
+            'avatar' => $nomeImagem,
             'id' => $id,
             'first_name' => $this->request->getVar('first_name'),
             'last_name' => $this->request->getVar('last_name'),

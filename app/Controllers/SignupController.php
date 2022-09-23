@@ -28,8 +28,14 @@ class SignupController extends BaseController
         ];
 
         if ($this->validate($rules)) {
+            $imagem = $this->request->getFile('avatar');
+            $imagem->setName = time() . '' . rand(1000, 9999) . '.' . $imagem->getClientExtension();
+            $imagem->move('./imagens');
+            $nomeImagem = $imagem->getName();
+
             $userModel = new UserModel();
             $data = [
+                'avatar'    => $nomeImagem,
                 'first_name'     => $this->request->getVar('first_name'),
                 'last_name'     => $this->request->getVar('last_name'),
                 'email'    => $this->request->getVar('email'),

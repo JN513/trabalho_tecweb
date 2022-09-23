@@ -4,6 +4,7 @@ USE ludwickvonmises;
 
 CREATE TABLE IF NOT EXISTS User(
     id INT AUTO_INCREMENT NOT NULL,
+    avatar VARCHAR(255),
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     email VARCHAR(255),
