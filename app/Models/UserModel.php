@@ -10,7 +10,7 @@ class UserModel extends Model
 	protected $table = 'User';
 	protected $primaryKey = 'id';
 	//Campos editáveis
-	protected $allowedFields = ['avatar', 'first_name', 'last_name', 'email', 'password', 'created_at'];
+	protected $allowedFields = ['avatar', 'first_name', 'last_name', 'email', 'password', 'created_at', 'is_staff'];
 	/*Método Get para apresentar o usuário*/
 
 	//mostra usuário específico

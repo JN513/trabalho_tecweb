@@ -26,13 +26,15 @@
         </div>
         <div class="card-footer">
             <div class="d-flex flex-row-reverse">
-                <?php if ($user['id'] == session()->get('id') or session()->get('is_staff')) : ?>
-                    <div class="d-flex flex-row-reverse py-3">
+                <div class="d-flex flex-row-reverse py-3">
+                    <?php if ($user['id'] == session()->get('id') or session()->get('is_staff')) : ?>
                         <a href="<?= base_url() ?>/user/edit/<?= $user['id'] ?>" class="btn btn-primary mx-1">Editar</a>
                         <a href="<?= base_url() ?>/user/delete/" class="btn btn-danger mx-1">Deletar</a>
+                    <?php endif; ?>
+                    <?php if ($user['id'] == session()->get('id')) : ?>
                         <a href="<?= base_url() ?>/user/alterpassword" class="btn btn-success mx-1">Alterar Senha</a>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

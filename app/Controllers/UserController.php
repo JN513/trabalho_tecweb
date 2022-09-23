@@ -86,6 +86,18 @@ class UserController extends BaseController
             $nomeImagem = $userModel->find($id)['avatar'];
         }
 
+        $staff = FALSE;
+
+        if ($session->get('is_staff')) {
+            $is_staff = $this->request->getVar('is_staff');
+
+            if (!empty($is_staff)) {
+                if ($is_staff) {
+                    $staff = TRUE;
+                }
+            }
+        }
+
         $data = [
             'avatar' => $nomeImagem,
             'id' => $id,
@@ -93,11 +105,12 @@ class UserController extends BaseController
             'last_name' => $this->request->getVar('last_name'),
             'email' => $this->request->getVar('email'),
             'password' => $userModel->where('id', $id)->first()['password'],
+            'is_staff' => $staff,
         ];
 
         $userModel->save($data);
 
-        $session->setFlashdata('success', 'Perfil atualizado com sucesso.');
+        $session->setFlashdata('success', 'Perfil atualizado com sucesso. e staff: ');
 
         return redirect()->to("/profile/{$data['id']}");
     }

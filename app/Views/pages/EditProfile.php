@@ -34,6 +34,14 @@
                 <div class="form-group mb-3">
                     <input type="file" name="avatar" id="avatar" placeholder="Avatar" class="form-control">
                 </div>
+
+                <?php if (session()->get('is_staff')) : ?>
+                    <div class="form-group form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="is_staff" value="1" name="is_staff" <?php if ($user['is_staff']) echo "checked"; ?>>
+                        <label class="form-check-label" for="is_staff">Is Staff</label>
+                    </div>
+                <?php endif; ?>
+
                 <div class="d-grid">
                     <button type="submit" class="btn btn-dark">Atualizar</button>
                 </div>
