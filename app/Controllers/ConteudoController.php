@@ -70,7 +70,7 @@ class ConteudoController extends BaseController
 
         $oldimagename = $conteudoModel->find($id)['imagem'];
 
-        if (file_exists('./imagens/' . $oldimagename)) {
+        if (file_exists('./imagens/' . $oldimagename) and !empty($oldimagename)) {
             unlink('./imagens/' . $oldimagename);
         }
 
