@@ -17,7 +17,7 @@
         <?php if (count($conteudo) != 0) : ?>
 
             <div class="my-3">
-                <form action="" method="get">
+                <form action="<?php if (isset($_REQUEST['page'])) echo "?page{$_REQUEST['page']}"; ?>" method="get">
                     <div class="form-group">
                         <label for="orderby">Ordenar por:</label>
                         <select name="orderby" id="orderby" class="form-select" aria-label="Ordenar por:">
