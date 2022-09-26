@@ -60,6 +60,62 @@
                     </div>
                 </a>
             <?php endfor; ?>
+
+        <?php else : ?>
+            <div class="alert alert-warning">
+                Não há conteúdo cadastrado.
+            </div>
         <?php endif; ?>
+
+        <?php
+        $orderby = "";
+        $reverse = "";
+
+        if (isset($_REQUEST['orderby'])) {
+            $orderby = "&orderby={$_REQUEST['orderby']}";
+        }
+
+        if (isset($_REQUEST['reverse'])) {
+            $reverse = "&reverse={$_REQUEST['reverse']}";
+        }
+
+        $pagina = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : 1;
+
+        $anterior = $pagina - 1;
+        $proximo = $pagina + 1;
+
+        ?>
+
+        <div class="d-flex justify-content-center">
+            <div>
+                <ul class="pagination">
+                    <?php if ($pagina > 1) : ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?php echo "{$anterior}{$reverse}{$orderby}"; ?>" aria-label="Anterior">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                        <?php if ($i == $pagina) : ?>
+                            <li class="page-item active"><a class="page-link" href="?page=<?php echo "{$i}{$reverse}{$orderby}"; ?>"><?= $i ?></a></li>
+                        <?php else : ?>
+                            <li class="page-item"><a class="page-link" href="?page=<?php echo "{$i}{$reverse}{$orderby}"; ?>"><?= $i ?></a></li>
+                        <?php endif; ?>
+
+                    <?php endfor; ?>
+                    <?php if ($pagina < $total_pages) : ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?php echo "{$proximo}{$reverse}{$orderby}"; ?>" aria-label="Próximo">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Próximo</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

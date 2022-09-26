@@ -88,5 +88,9 @@
                 </a>
             <?php endfor; ?>
         </div>
+    <?php else : ?>
+        <div class="alert alert-warning">
+            Não há conteúdo cadastrado.
+        </div>
     <?php endif; ?>
 </div>
