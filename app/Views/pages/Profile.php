@@ -56,7 +56,7 @@
                     <label for="reverse">Ordem:</label>
                     <select name="reverse" id="reverse" class="form-select" aria-label="Ordem:">
                         <option value="1" <?php if (!empty($_REQUEST['reverse'])) if ($_REQUEST['reverse'] == '1') echo "selected" ?>>Crescente</option>
-                        <option value="0" <?php if (!empty($_REQUEST['reverse'])) if ($_REQUEST['reverse'] == '0') echo "selected" ?>>Decrescente</option>
+                        <option value="2" <?php if (!empty($_REQUEST['reverse'])) if ($_REQUEST['reverse'] == '2') echo "selected" ?>>Decrescente</option>
                     </select>
                 </div>
 
