@@ -7,6 +7,45 @@ use App\Models\ConteudoModel;
 
 class UserController extends BaseController
 {
+    public function get_conteudo($id)
+    {
+        $conteudoModel = new ConteudoModel();
+        $conteudoModel->where('user_id', $id);
+        return $conteudoModel->getConteudo();
+    }
+
+    public function get_reverse_data($where, $id)
+    {
+        $conteudoModel = new ConteudoModel();
+        $conteudoModel->where('user_id', $id);
+
+        if ($where == 'id') {
+            return $conteudoModel->orderBy('id')->findAll();
+        } else if ($where == 'titulo') {
+            return $conteudoModel->orderBy('titulo')->findAll();
+        } else if ($where == 'descricao') {
+            return $conteudoModel->orderBy('descricao')->findAll();
+        } else {
+            return $conteudoModel->findAll();
+        }
+    }
+
+    public function get_data($where, $id)
+    {
+        $conteudoModel = new ConteudoModel();
+        $conteudoModel->where('user_id', $id);
+
+        if ($where == 'id') {
+            return $conteudoModel->orderBy('id', 'DESC')->findAll();
+        } else if ($where == 'titulo') {
+            return $conteudoModel->orderBy('titulo', 'DESC')->findAll();
+        } else if ($where == 'descricao') {
+            return $conteudoModel->orderBy('descricao', 'DESC')->findAll();
+        } else {
+            return $conteudoModel->getConteudo();
+        }
+    }
+
     public function index($id = NULL)
     {
         if ($id == NULL) {
@@ -15,12 +54,26 @@ class UserController extends BaseController
         }
 
         $userModel = new UserModel();
-        $conteudoModel = new ConteudoModel();
+        helper(['form']);
+        $data = [];
 
-        $conteudoModel->where('user_id', $id);
+        if ($this->request->getVar("orderby")) {
+            $where = $this->request->getVar("orderby");
+
+            if (!empty($this->request->getVar("reverse"))) {
+                if ($this->request->getVar("reverse") == '1' or $this->request->getVar("reverse") == 1) {
+                    $data['conteudo'] = $this->get_reverse_data($where, $id);
+                } else {
+                    $data['conteudo'] = $this->get_data($where, $id);
+                }
+            } else {
+                $data['conteudo'] = $this->get_data($where, $id);
+            }
+        } else {
+            $data['conteudo'] = $this->get_conteudo($id);
+        }
 
         $data['user'] = $userModel->where('id', $id)->first();
-        $data['conteudo'] = $conteudoModel->findAll();
         echo view('templates/Header', ['title' => 'Perfil']);
         echo view('pages/Profile', $data);
         echo view('templates/Footer');

@@ -42,6 +42,30 @@
     <?php if (count($conteudo) != 0) : ?>
         <h3 class="py-3">Publicações:</h3>
 
+        <div class="my-3">
+            <form action="" method="get">
+                <div class="form-group">
+                    <label for="orderby">Ordenar por:</label>
+                    <select name="orderby" id="orderby" class="form-select" aria-label="Ordenar por:">
+                        <option value="id" <?php if (!empty($_REQUEST['orderby'])) if ($_REQUEST['orderby'] == 'id') echo "selected" ?>>Data de publicação</option>
+                        <option value="titulo" <?php if (!empty($_REQUEST['orderby'])) if ($_REQUEST['orderby'] == 'titulo') echo "selected" ?>>Titulo</option>
+                        <option value="descricao" <?php if (!empty($_REQUEST['orderby'])) if ($_REQUEST['orderby'] == 'descricao') echo "selected" ?>>Descrição</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reverse">Ordem:</label>
+                    <select name="reverse" id="reverse" class="form-select" aria-label="Ordem:">
+                        <option value="1" <?php if (!empty($_REQUEST['reverse'])) if ($_REQUEST['reverse'] == '1') echo "selected" ?>>Crescente</option>
+                        <option value="0" <?php if (!empty($_REQUEST['reverse'])) if ($_REQUEST['reverse'] == '0') echo "selected" ?>>Decrescente</option>
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-success">Ordenar</button>
+                </div>
+            </form>
+        </div>
+
         <div class="py-5">
             <?php for ($i = 0; $i < count($conteudo); $i++) : ?>
 
