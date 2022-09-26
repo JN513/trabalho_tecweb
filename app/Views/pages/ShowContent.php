@@ -21,7 +21,7 @@
         <?php endif; ?>
 
         <div class="text-center">
-            <img src="<?= base_url() ?>/imagens/<?= $conteudo['imagem'] ?>" alt="<?= $conteudo['titulo'] ?>">
+            <img src="<?= base_url() ?>/imagens/<?= $conteudo['imagem'] ?>" alt="<?= $conteudo['titulo'] ?>" class="img-fluid">
         </div>
         <div class="text-center py-2">
             <h1><?= $conteudo['titulo'] ?></h1>
